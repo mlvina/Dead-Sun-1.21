@@ -1,6 +1,7 @@
 package net.mivina.firstmod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -13,28 +14,27 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.mivina.firstmod.item.ModItems;
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
-@Mod(FirstMod.MOD_ID)
+
+@Mod(FirstMod.MOD_ID)// The value here should match an entry in the META-INF/mods.toml file
 public class FirstMod {
-    // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "firstmod";
-    // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final String MOD_ID = "firstmod"; // Define mod id in a common place for everything to reference
+
+    public static final Logger LOGGER = LogUtils.getLogger();// Directly reference a slf4j logger
 
     public FirstMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
-        // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
+        modEventBus.addListener(this::commonSetup);// Register the commonSetup method for modloading
+        MinecraftForge.EVENT_BUS.register(this);// Register ourselves for server and other game events we are interested in
 
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
-        // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModItems.register(modEventBus);
+
+
+        modEventBus.addListener(this::addCreative);// Register the item to a creative tab
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);// Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -42,21 +42,26 @@ public class FirstMod {
 
     }
 
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
 
+    private void addCreative(BuildCreativeModeTabContentsEvent event)// Add the example block item to the building blocks tab
+    {
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.TOMATO);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.ROTTEN_TOMATO);
+        }
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
+
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
+    public void onServerStarting(ServerStartingEvent event) // You can use SubscribeEvent and let the Event Bus discover methods to call
     {
 
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT) // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     public static class ClientModEvents
     {
         @SubscribeEvent
