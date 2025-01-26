@@ -47,8 +47,6 @@ public class FirstMod {
     {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.TOMATO);
-        }
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.ROTTEN_TOMATO);
         }
     }
