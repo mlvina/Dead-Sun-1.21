@@ -38,7 +38,6 @@ public class FirstMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
     }
 
 
@@ -48,10 +47,7 @@ public class FirstMod {
             event.accept(ModItems.TOMATO);
             event.accept(ModItems.ROTTEN_TOMATO);
         }
-
     }
-
-
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) // You can use SubscribeEvent and let the Event Bus discover methods to call
     {
