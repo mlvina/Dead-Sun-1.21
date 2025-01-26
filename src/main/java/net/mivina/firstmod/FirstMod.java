@@ -14,6 +14,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.mivina.firstmod.block.ModBlocks;
 import net.mivina.firstmod.item.ModItems;
 import org.slf4j.Logger;
 
@@ -31,6 +32,7 @@ public class FirstMod {
         MinecraftForge.EVENT_BUS.register(this);// Register ourselves for server and other game events we are interested in
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
 
         modEventBus.addListener(this::addCreative);// Register the item to a creative tab
@@ -46,6 +48,9 @@ public class FirstMod {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.TOMATO);
             event.accept(ModItems.ROTTEN_TOMATO);
+        }
+        if (event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(ModBlocks.BASKET_OF_TOMATOES);
         }
     }
     @SubscribeEvent
