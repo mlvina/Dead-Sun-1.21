@@ -49,6 +49,7 @@ public class FirstMod {
             event.accept(ModItems.TOMATO);
             event.accept(ModItems.ROTTEN_TOMATO);
         }
+
     }
 
 
