@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures":{
-    "top": "firstmod:block/up_basket_of_tomatoes",
-    "bottom": "firstmod:block/bottom_basket_of_tomatoes",
-    "side": "firstmod:block/side_basket_of_tomatoes"
-  }
-}

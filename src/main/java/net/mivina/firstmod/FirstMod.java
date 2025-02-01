@@ -1,6 +1,8 @@
 package net.mivina.firstmod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,10 +25,13 @@ import org.slf4j.Logger;
 public class FirstMod {
     public static final String MOD_ID = "firstmod"; // Define mod id in a common place for everything to reference
 
+
+
     public static final Logger LOGGER = LogUtils.getLogger();// Directly reference a slf4j logger
 
     public FirstMod()
     {
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);// Register the commonSetup method for modloading
         MinecraftForge.EVENT_BUS.register(this);// Register ourselves for server and other game events we are interested in
@@ -48,9 +53,6 @@ public class FirstMod {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.TOMATO);
             event.accept(ModItems.ROTTEN_TOMATO);
-        }
-        if (event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
-            event.accept(ModBlocks.BASKET_OF_TOMATOES);
         }
     }
     @SubscribeEvent
