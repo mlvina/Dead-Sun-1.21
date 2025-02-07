@@ -1,8 +1,6 @@
-package net.mivina.firstmod;
+package net.mivina.deadsun;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,20 +14,20 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.mivina.firstmod.block.ModBlocks;
-import net.mivina.firstmod.item.ModItems;
+import net.mivina.deadsun.block.ModBlocks;
+import net.mivina.deadsun.item.ModItems;
 import org.slf4j.Logger;
 
 
-@Mod(FirstMod.MOD_ID)// The value here should match an entry in the META-INF/mods.toml file
-public class FirstMod {
-    public static final String MOD_ID = "firstmod"; // Define mod id in a common place for everything to reference
+@Mod(DeadSun.MOD_ID)// The value here should match an entry in the META-INF/mods.toml file
+public class DeadSun {
+    public static final String MOD_ID = "deadsun"; // Define mod id in a common place for everything to reference
 
 
 
     public static final Logger LOGGER = LogUtils.getLogger();// Directly reference a slf4j logger
 
-    public FirstMod()
+    public DeadSun()
     {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
